@@ -244,9 +244,9 @@ class ComputeLoss:
             loss[0] += loss0_
             loss[2] += loss2_
 
-        loss[0] *= 7.5  # box gain
-        loss[1] *= 0.5  # cls gain
-        loss[2] *= 1.5  # dfl gain
+        loss[0] *= self.hyp["box"]  # box gain
+        loss[1] *= self.hyp["cls"] # cls gain
+        loss[2] *= self.hyp["dfl"]  # dfl gain
 
         return loss.sum() * batch_size, loss.detach()  # loss(box, cls, dfl)
 
@@ -378,8 +378,8 @@ class ComputeLossLH:
             loss[0] += loss0_
             loss[2] += loss2_
 
-        loss[0] *= 7.5  # box gain
-        loss[1] *= 0.5  # cls gain
-        loss[2] *= 1.5  # dfl gain
+        loss[0] *= self.hyp["box"]  # box gain
+        loss[1] *= self.hyp["cls"] # cls gain
+        loss[2] *= self.hyp["dfl"]  # dfl gain
 
         return loss.sum() * batch_size, loss.detach()  # loss(box, cls, dfl)
